@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  "3.10.4":
+    container_name: python-3.10.4
+    image: alemna/python:3.10.4
+    build:
+      context: .
+      dockerfile: DOCKERFILE
+  "3.10":
+    container_name: python-3.10
+    image: alemna/python:3.10
+    build:
+      context: .
+      dockerfile: DOCKERFILE.3.10
+    depends_on:
+      - "3.10.4"
