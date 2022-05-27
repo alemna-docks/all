@@ -1,8 +1,9 @@
 version: "3.9"
 
 services:
-  debian_bullseye_slim:
-    image: alemna/debian:bullseye-slim
+  debian_bullseye:
+    container_name: bullseye
+    image: alemna/debian:bullseye
     build:
       context: .
       dockerfile: DOCKERFILE
