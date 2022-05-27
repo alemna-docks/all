@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  debian_python:
+    container_name: python
+    image: alemna/python:3.10.4
+    build:
+      context: .
+      dockerfile: DOCKERFILE
