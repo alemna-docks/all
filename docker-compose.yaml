@@ -5,5 +5,25 @@ services:
     container_name: bullseye
     image: alemna/debian:bullseye
     build:
-      context: .
-      dockerfile: DOCKERFILE
+      context: ./bullseye
+      dockerfile: Dockerfile
+      args:
+        - VARIANT=bullseye
+  debian_bullseye_slim:
+    container_name: bullseye-slim
+    image: alemna/debian:bullseye-slim
+    build:
+      context: ./bullseye
+      dockerfile: Dockerfile
+      args:
+        - VARIANT=bullseye-slim
+
+  debian_user:
+    container_name: user
+    image: alemna/debian:user
+    build:
+      context: ./user
+      dockerfile: Dockerfile
+    depends_on:
+      debian_bullseye:
+        condition: service_completed_successfully
