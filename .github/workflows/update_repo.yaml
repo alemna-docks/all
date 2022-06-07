@@ -1,0 +1,22 @@
+name: Update repository
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # branch
+          ref: wip-github-actions
+      
+      - name: Make sure './update_repository.sh' is executable
+        run: chmod +x update_repository.sh
+        
+      - name: Update debian subtree
+        run: ./update_repository.sh debian
+ 
