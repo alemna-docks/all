@@ -35,6 +35,8 @@ RUN set -eux; apt-get update; \
     apt-get --assume-yes clean; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*; 
 
+
+# If we're building a 'bullseye' package and not 'bullseye-slim'
 RUN set -eux; \
     if [ "$VARIANT" == "bullseye" ]; then \
     apt-get --assume-yes install --no-install-recommends \

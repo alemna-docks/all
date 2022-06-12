@@ -1,0 +1,50 @@
+{
+    // Bigtree will run 'docker compose up --build' on these files
+    "docker-compose files": [
+        // paths relative to this repository's root dir
+        "docker-compose.yaml"
+    ],
+    // The aliases for each Debian release will include the releases'
+    // major version number. Additional aliases will be the status of the
+    // Debian release ('oldstable', 'stable', 'testing', 'unstable') as
+    // well as the traditional Docker default ('latest').
+    "tag aliases": {
+        "stretch": [
+            "9"
+        ],
+        "stretch-slim": [
+            "9-slim"
+        ],
+        "buster": [
+            "10",
+            "oldstable"
+        ],
+        "buster-slim": [
+            "10-slim",
+            "oldstable-slim"
+        ],
+        "bullseye": [
+            "11",
+            "stable",
+            "latest"
+        ],
+        "bullseye-slim": [
+            "11-slim",
+            "stable-slim"
+        ],
+        "bookworm": [
+            "12",
+            "testing"
+        ],
+        "bookworm-slim": [
+            "12-slim",
+            "testing-slim"
+        ],
+        "sid": [
+            "unstable"
+        ],
+        "sld-slim": [
+            "unstable-slim"
+        ]
+    }
+}
