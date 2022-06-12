@@ -4,7 +4,7 @@ from typing import Iterator, Union
 
 import git
 import git.cmd
-from git import Commit, Repo, HEAD, Remote, Tree, Blob
+from git import Commit, GitCommandError, Repo, HEAD, Remote, Tree, Blob
 
 import _bigtree.utils.style
 from _bigtree.config import BigtreeReader
@@ -39,8 +39,11 @@ def remote_commits_ahead(remote: Remote) -> int:
     g = git.cmd.Git(working_dir)
     # TODO: Fix this so we use subtree.remote_branch instead of default_branch_name.
     cmd = f"git rev-list --left-right --count {remote.name}/{default_branch_name}...{default_branch_name}"
-    print("cmd: " + cmd)
-    output = g.execute(command=(cmd.split(" ")))
+    try:
+        output = g.execute(command=(cmd.split(" ")))
+    except GitCommandError as e:
+        print(e.with_traceback(None))
+
     commits_ahead = output.split("\t")[0]
     return int(commits_ahead)
 
@@ -215,5 +218,8 @@ class BigtreeGit:
         # TODO: proper debugging with --verbose flag
         print(cmd)
         g = git.cmd.Git(Constants.BIGTREE_DIR)
-        output = g.execute(command=cmd)
-        print(output)
+        try:
+            output = g.execute(command=cmd)
+            print(output)
+        except GitCommandError as e:
+            print(e.with_traceback(None))
