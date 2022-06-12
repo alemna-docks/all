@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+# A convenience script to call the Python module '_bigtree'
+# without having to worry about the 'python -m _bigtree arg'
+# syntax.
+#
+# Basically - whatever arguments this script recieves, it passes
+# over to _bigtree/__main__.py.
+
+# from https://codefather.tech/blog/bash-get-script-directory/
+this_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+python_path=$(which python3)
+
+cd $this_dir
+$python_path -m _bigtree $@
+
+#

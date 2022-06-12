@@ -1,0 +1,64 @@
+{
+    "bigtree": {
+        "protect_branches": [
+            // bigtree will throw an error when asked to `git pull`
+            // while the active branch is a branch named here
+        ]
+    },
+    // Each subtree listed must have a defined `local_directory`, 
+    // `remote_repository`, and one or more `image_repositories`.
+    // Optionally, we can also define `disable_subtree` as `true` in
+    // order to tell the workflow to skip this image.
+    "subtrees": {
+        "build": {
+            "local_directory": "build",
+            "remote_repository": "https://github.com/alemna-docks/build.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/build"
+            ],
+            "disable_subtree": true
+        },
+        "debian": {
+            "local_directory": "debian",
+            "remote_repository": "https://github.com/alemna-docks/debian.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/debian"
+            ]
+        },
+        "frr": {
+            "local_directory": "frr",
+            "remote_repository": "https://github.com/alemna-docks/frr.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/frr"
+            ],
+            "disable_subtree": true
+        },
+        "python": {
+            "local_directory": "python",
+            "remote_repository": "https://github.com/alemna-docks/python.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/python"
+            ]
+        },
+        "router": {
+            "local_directory": "router",
+            "remote_repository": "https://github.com/alemna-docks/router.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/router"
+            ],
+            "disable_subtree": true
+        },
+        "user": {
+            "local_directory": "user",
+            "remote_repository": "https://github.com/alemna-docks/user.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/user"
+            ],
+            "disable_subtree": true
+        }
+    },
+    // Any images listed as `base_images` should be updated first
+    "base_images": [
+        "debian"
+    ]
+}
