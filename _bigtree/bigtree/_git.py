@@ -164,7 +164,10 @@ class BigtreeGit:
         return branches_dict
 
     def remote(self, name: str = None, url: str = None) -> Remote:
-        """Given a `name` or `url`, return the corresponding `Remote` object."""
+        """Given a `name` or `url`, return the corresponding `Remote` object.
+
+        Raises `KeyError if name or url isn't found.
+        """
         if not name and not url:
             raise TypeError("get_remote() requires either a 'name' or 'url'.")
         elif name and url:

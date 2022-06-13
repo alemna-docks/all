@@ -7,8 +7,24 @@ from _bigtree.bigtree import Bigtree
 
 def fetch(subtree_name_patterns: list):
     for pattern in subtree_name_patterns:
-        remote_name = _bigtree.utils.style.name_remote(pattern)
+        subtrees = [s for s in _bigtree.subtree.create_subtree_factory(pattern)]
+        for subtree in subtrees:
+            if subtree.disable_subtree is True:
+                print(f"Subtree '{subtree.name}' is disabled, skipping...")
+            else:
+                remote_name = _bigtree.utils.style.name_remote(subtree.name)
+                try:
         f = Bigtree().remote(name=remote_name).fetch()
+                except KeyError:
+                    m = f"Adding remote '{remote_name}' at {subtree.remote_repository}"
+                    print(m)
+                    Bigtree().add_remote(
+                        remote_name=remote_name,
+                        remote_url=subtree.remote_repository,
+                        prefix=subtree.local_directory(absolute=False, stringify=True),
+                    )
+                    f = Bigtree().remote(name=remote_name).fetch()
+
         for info in f:
             print(f"Latest commit at {remote_name}: {info.commit}")
 
