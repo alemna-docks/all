@@ -82,7 +82,6 @@ def initialize_parser() -> ArgumentParser:
     remote = sp.add_parser("remote")
     remote.add_argument("--add")
     remote.add_argument("--fetch", action="store_true")
-    # remote_cmds.add_argument("--include-disabled", action="store_true", default=False)
     remote.add_argument("--merge", action="store_true")
     remote.add_argument("--show", action="store_true")
 
@@ -92,7 +91,6 @@ def initialize_parser() -> ArgumentParser:
     #   ... --show
     image = sp.add_parser("image")
     image.add_argument("--build", action="store_true")
-    # image_cmds.add_argument("--include-disabled", action="store_true", default=False)
     image.add_argument("--push", action="store_true")
     image.add_argument("--show", action="store_true")
 
@@ -104,7 +102,6 @@ def initialize_parser() -> ArgumentParser:
     show = sp.add_parser("show")
     show.add_argument("--bigtree", action="store_true")
     show.add_argument("--subtree", action="store_true")
-    # image_cmds.add_argument("--include-disabled", action="store_true", default=False)
     show.add_argument("--remote", action="store_true")
     show.add_argument("--image", action="store_true")
 
