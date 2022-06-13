@@ -218,7 +218,10 @@ class BigtreeGit:
         prefix_flag = f"--prefix={subtree.local_directory(absolute=False)}"
         rname = remote.name
         rbranch = subtree.remote_branch
-        msg_flag = f'-m "{_bigtree.utils.style.commit_message(commit_msg)}"'
+        if commit_msg:
+            msg_flag = f'-m "{_bigtree.utils.style.commit_message(commit_msg)}"'
+        else:
+            msg_flag = f'-m "{_bigtree.utils.style.commit_message_merge(remote)}"'
         cmd = ["git", "subtree", "pull", "-d", prefix_flag, rname, rbranch, msg_flag]
 
         # run 'git subtree pull' command, with some print()s for debug :)

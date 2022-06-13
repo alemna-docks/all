@@ -1,6 +1,8 @@
 """Functions and classes related to stylistic choices (i.e. all
 remotes should have a standard naming scheme, etc.)
 """
+from git import Remote
+
 from _bigtree.utils import Constants
 
 
@@ -15,6 +17,12 @@ def commit_message(text: str):
         text = Constants.COMMIT_MSG_DEFAULT
     text = Constants.COMMIT_MSG_PREFIX + text
     return text
+
+
+def commit_message_merge(remote: Remote):
+    """For a given `remote`, returns the appropriate message for a merge."""
+    msg = f"merge from {remote.name} at {remote.repo.head.commit.hexsha}"
+    return msg
 
 
 def name_remote(subtree_name: str) -> str:
