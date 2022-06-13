@@ -19,7 +19,7 @@ def image(*subtrees):
             _bigtree.subtree.cmd_for_subtrees(command, subtree, "image_repositories")
 
 
-def remote(*subtrees):
+def code(*subtrees):
     """For each `subtree`, print the `Subtree.name` and
     `Subtree.remote_repository`.
     """

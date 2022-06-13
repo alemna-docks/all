@@ -39,7 +39,7 @@ jobs:
       
       - name: Build debian
         run: |
-          bash ./bigtree debian remote --fetch --merge
+          bash ./bigtree debian code --fetch --merge
           bash _helpers/debian.sh
 
   build-python:
@@ -74,7 +74,7 @@ jobs:
       
       - name: Build python
         run: |
-          bash ./bigtree python remote --fetch --merge
+          bash ./bigtree python code --fetch --merge
           bash _helpers/python.sh
   
   build-write:
@@ -109,7 +109,7 @@ jobs:
 
       - name: Build write
         run: |
-          bash ./bigtree write remote --fetch --merge --add write
+          bash ./bigtree write code --fetch --merge --add write
           bash _helpers/write.sh
  
   # build-dependents:

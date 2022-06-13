@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 
 import _bigtree.cli_commands.image
-import _bigtree.cli_commands.remote
+import _bigtree.cli_commands.code
 import _bigtree.cli_commands.show
 import _bigtree.log
 import _bigtree.utils
@@ -19,7 +19,7 @@ def initialize_parser() -> ArgumentParser:
     _e = (
         "Additional help for SUBCOMMANDS can be accessed by typing "
         + "`--help` after that subcommand's name (for example, "
-        + "`bigtree remote --help`). In general, the `--help` "
+        + "`bigtree code --help`). In general, the `--help` "
         + "command overrides other commands (even `--verbose`)."
     )
     parser = ArgumentParser(prog="bigtree", description=_d, epilog=_e)
@@ -71,19 +71,21 @@ def initialize_parser() -> ArgumentParser:
     #
     # Yay, subcommands!
     #
-    sp_help = "subcommands giving access to workflows, like `remote --fetch` and `image --push`"
+    sp_help = (
+        "subcommands giving access to workflows, like `code --fetch` and `image --push`"
+    )
     sp = parser.add_subparsers(title="SUBCOMMANDS", help=sp_help)
 
-    # bigtree remote ...
+    # bigtree code ...
     #   ... --add
     #   ... --fetch
     #   ... --merge
     #   ... --show
-    remote = sp.add_parser("remote")
-    remote.add_argument("--add")
-    remote.add_argument("--fetch", action="store_true")
-    remote.add_argument("--merge", action="store_true")
-    remote.add_argument("--show", action="store_true")
+    code = sp.add_parser("code")
+    code.add_argument("--add")
+    code.add_argument("--fetch", action="store_true")
+    code.add_argument("--merge", action="store_true")
+    code.add_argument("--show", action="store_true")
 
     # bigtree image ...
     #   ... --build
@@ -97,12 +99,12 @@ def initialize_parser() -> ArgumentParser:
     # bigtree show ...
     #   ... --bigtree
     #   ... --subtree
-    #   ... --remote
+    #   ... --code
     #   ... --image
     show = sp.add_parser("show")
     show.add_argument("--bigtree", action="store_true")
     show.add_argument("--subtree", action="store_true")
-    show.add_argument("--remote", action="store_true")
+    show.add_argument("--code", action="store_true")
     show.add_argument("--image", action="store_true")
 
     return parser
@@ -118,18 +120,18 @@ def execute_parser(parser: ArgumentParser, args):
         debug("Arguments recieved from command-line:", args)
         debug("Arguments parsed from command-line:", parsed)
 
-    if "remote" in args:
+    if "code" in args:
         if parsed.include_disabled and any((parsed.fetch, parsed.merge)):
             raise IncompatibleArgumentError("--include-disabled", "--fetch", "--merge")
 
         if parsed.add:
-            _bigtree.cli_commands.remote.add(parsed.add)
+            _bigtree.cli_commands.code.add(parsed.add)
         if parsed.fetch:
-            _bigtree.cli_commands.remote.fetch(parsed.subtree_name_pattern)
+            _bigtree.cli_commands.code.fetch(parsed.subtree_name_pattern)
         if parsed.merge:
-            _bigtree.cli_commands.remote.merge(parsed.subtree_name_pattern)
+            _bigtree.cli_commands.code.merge(parsed.subtree_name_pattern)
         if parsed.show:
-            _bigtree.cli_commands.show.remote(parsed.subtree_name_pattern)
+            _bigtree.cli_commands.show.code(parsed.subtree_name_pattern)
 
     elif "image" in args:
         if parsed.build:
@@ -143,15 +145,15 @@ def execute_parser(parser: ArgumentParser, args):
         if parsed.bigtree:
             _bigtree.cli_commands.show.bigtree(Bigtree())
         if parsed.subtree:
-            # Even if other flags like --image and --remote are present,
+            # Even if other flags like --image and --code are present,
             # show.subtree() will cover all the same data anyways. Call
             # it and exit.
             _bigtree.cli_commands.show.subtree(parsed.subtree_name_pattern)
         else:
             if parsed.image:
                 _bigtree.cli_commands.show.image(parsed.subtree_name_pattern)
-            if parsed.remote:
-                _bigtree.cli_commands.show.remote(parsed.subtree_name_pattern)
+            if parsed.code:
+                _bigtree.cli_commands.show.code(parsed.subtree_name_pattern)
 
     else:  # arguments don't match any command
         parser.print_help()
