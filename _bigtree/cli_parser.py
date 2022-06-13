@@ -75,10 +75,12 @@ def initialize_parser() -> ArgumentParser:
     sp = parser.add_subparsers(title="SUBCOMMANDS", help=sp_help)
 
     # bigtree remote ...
+    #   ... --add
     #   ... --fetch
     #   ... --merge
     #   ... --show
     remote = sp.add_parser("remote")
+    remote.add_argument("--add")
     remote.add_argument("--fetch", action="store_true")
     # remote_cmds.add_argument("--include-disabled", action="store_true", default=False)
     remote.add_argument("--merge", action="store_true")
@@ -123,6 +125,8 @@ def execute_parser(parser: ArgumentParser, args):
         if parsed.include_disabled and any((parsed.fetch, parsed.merge)):
             raise IncompatibleArgumentError("--include-disabled", "--fetch", "--merge")
 
+        if parsed.add:
+            _bigtree.cli_commands.remote.add(parsed.add)
         if parsed.fetch:
             _bigtree.cli_commands.remote.fetch(parsed.subtree_name_pattern)
         if parsed.merge:
