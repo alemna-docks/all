@@ -4,11 +4,7 @@ import os
 from pathlib import Path
 
 import docker
-
-# from docker.context import
 from docker.client import ImageCollection
-
-# from docker import DockerClient
 
 from _bigtree.subtree import Subtree
 

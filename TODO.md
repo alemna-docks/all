@@ -2,7 +2,6 @@
 ## `bigtree`
 ### Short-term
 
-- move `_docker` stuff to subtrees
 - have `bigtree` still be aware of subtree docker stuff
 - fix config seperation
   
