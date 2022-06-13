@@ -1,8 +1,9 @@
 import sys
+
 from _bigtree.cli_parser import (
-    initialize_parser,
-    execute_parser,
     IncompatibleArgumentError,
+    execute_parser,
+    initialize_parser,
 )
 from _bigtree.log import initialize_logger
 

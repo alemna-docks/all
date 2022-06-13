@@ -4,7 +4,7 @@ from typing import Iterator, Union
 
 import git
 import git.cmd
-from git import Commit, GitCommandError, Repo, HEAD, Remote, Tree, Blob
+from git import HEAD, Blob, Commit, GitCommandError, Remote, Repo, Tree
 
 import _bigtree.utils.style
 from _bigtree.config import BigtreeReader

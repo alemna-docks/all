@@ -1,8 +1,8 @@
 import subprocess
-import _bigtree.subtree
 
 import _bigtree.cli_commands.image._build
 import _bigtree.cli_commands.image._push
+import _bigtree.subtree
 
 
 def build(*subtrees):

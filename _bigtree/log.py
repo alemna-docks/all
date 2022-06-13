@@ -1,7 +1,6 @@
 import logging
-from logging import Logger, StreamHandler
-from logging import DEBUG, INFO, WARN, WARNING, ERROR, CRITICAL
 import sys
+from logging import CRITICAL, DEBUG, ERROR, INFO, WARN, WARNING, Logger, StreamHandler
 
 
 def initialize_logger() -> Logger:

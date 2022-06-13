@@ -1,4 +1,4 @@
-from _bigtree.config._main import Config, ConfigJSONReader, BigtreeReader, SubtreeReader
+from _bigtree.config._main import BigtreeReader, Config, ConfigJSONReader, SubtreeReader
 
 # from dataclasses import dataclass
 # from types import MappingProxyType

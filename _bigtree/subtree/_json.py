@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from pathlib import Path
+
 from _bigtree.subtree import Subtree
-from _bigtree.utils import JSONReader, Constants
+from _bigtree.utils import Constants, JSONReader
 
 
 @dataclass

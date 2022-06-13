@@ -1,5 +1,6 @@
 """Functions that cover low-level formatting for `show` commands, mostly."""
 from types import MethodType
+
 import _bigtree.utils
 from _bigtree.bigtree import Bigtree
 from _bigtree.subtree import Subtree
