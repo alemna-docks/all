@@ -4,7 +4,7 @@
 
 - move `_docker` stuff to subtrees
 - have `bigtree` still be aware of subtree docker stuff
-- finish implementing "can change branches" in `config.json`
+- fix config seperation
   
 ### Long-term
 - Logging
