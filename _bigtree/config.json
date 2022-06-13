@@ -55,6 +55,14 @@
                 "https://hub.docker.com/repository/docker/alemna/user"
             ],
             "disable_subtree": true
+        },
+        "write": {
+            "local_directory": "write",
+            "remote_repository": "https://github.com/alemna-docks/write.git",
+            "image_repositories": [
+                "https://hub.docker.com/repository/docker/alemna/write"
+            ],
+            "disable_subtree": false
         }
     },
     // Any images listed as `base_images` should be updated first

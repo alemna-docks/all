@@ -1,6 +1,11 @@
 #!/bin/bash
 
 # ===============================================
+#   Install extra Python libraries
+# ===============================================
+pip install -r requirements.txt
+
+# ===============================================
 #     Add this directory and the ./_helpers/ 
 #    directory to PATH and make all the shell 
 #               scripts executable
