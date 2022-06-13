@@ -133,10 +133,12 @@ class BigtreeGit:
 
     @property
     def remotes_iter(self) -> Iterator[Remote]:
+        self._repo = Repo(self.root_dir)
         return git.Remote.iter_items(repo=self._repo)
 
     @property
     def remotes_list(self) -> list[Remote]:
+        self._repo = Repo(self.root_dir)
         return git.Remote.list_items(repo=self._repo)
 
     @property
@@ -188,12 +190,14 @@ class BigtreeGit:
             )
 
         p = prefix
-        return self._repo.create_remote(
-            repo=self._repo,
-            name=remote_name,
-            url=remote_url,
-            prefix=p if isinstance(p, str) else str(p.relative_to(self.root_dir)),
-        )
+        if isinstance(p, str):
+            if p.startswith("/"):
+                p = Path(p).name
+        else:
+            # p is Path
+            p = p.relative_to(self.root_dir)
+
+        return self._repo.create_remote(name=remote_name, url=remote_url)
 
     def delete_remote(self, remote: Union[Remote, str]):
         while isinstance(remote, str):
