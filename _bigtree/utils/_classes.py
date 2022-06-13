@@ -27,6 +27,9 @@ class Constants:
     """Default branch to use for any Git repository without a default
     branch specified in the bigtree config file (usually `settings.json`)."""
 
+    SUBTREE_CONFIGFILE_NAME: str = "bigtree.subtree.json"
+    """The name of a config file which will be at the root of each subtree."""
+
 
 class JSONReader:
     """Opens the specified JSON file and returns values.
