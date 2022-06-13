@@ -1,5 +1,10 @@
 {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
     "files.associations": {
         "*.json": "jsonc"
-    }
+    },
+    "python.formatting.provider": "black"
 }
