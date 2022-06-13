@@ -15,12 +15,20 @@ class ConfigJSONReader(JSONReader):
 
 
 class BigtreeReader(ConfigJSONReader):
+    """A `JSONReader` which will automatically read the `bigtree` section
+    in the config file named by `_bigtree.utils.Constants.CONFIGFILE_PATH`.
+    """
+
     def __init__(self) -> None:
         super().__init__()
         self._data = Config.bigtree
 
 
 class SubtreeReader(ConfigJSONReader):
+    """A `JSONReader` which will automatically read the `subtree` section
+    in the config file named by `_bigtree.utils.Constants.CONFIGFILE_PATH`.
+    """
+
     def __init__(self, subtree_name: Union[str, None] = None) -> None:
         super().__init__()
         self._data = Config.subtrees

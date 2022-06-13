@@ -5,7 +5,12 @@ from _bigtree.utils import Constants
 
 
 def commit_message(text: str):
-    """"""
+    """Adds a prefix (`Constants.COMMIT_MSG_PREFIX`) to the given
+    `text`.
+
+    If no `text` is given, `Constants.COMMIT_MSG_DEFAULT` is used
+    instead.
+    """
     if not text:
         text = Constants.COMMIT_MSG_DEFAULT
     text = Constants.COMMIT_MSG_PREFIX + text
