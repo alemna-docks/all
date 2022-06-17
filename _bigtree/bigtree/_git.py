@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator, Union
+from typing import Iterator
 
 import git
 import git.cmd
@@ -182,7 +184,7 @@ class BigtreeGit:
         else:  # url and not name
             return self.remote_url_dict[url]
 
-    def add_remote(self, remote_name: str, remote_url: str, prefix: Union[str, Path]):
+    def add_remote(self, remote_name: str, remote_url: str, prefix: str | Path):
         if _bigtree.utils.style.is_remote_name_valid(remote_name) is False:
             raise ValueError(
                 "The remote_name should end in '-remote', "
@@ -199,7 +201,7 @@ class BigtreeGit:
 
         return self._repo.create_remote(name=remote_name, url=remote_url)
 
-    def delete_remote(self, remote: Union[Remote, str]):
+    def delete_remote(self, remote: Remote | str):
         while isinstance(remote, str):
             r: Remote = self.remotes_iter
             remote = r if r.name == remote else remote

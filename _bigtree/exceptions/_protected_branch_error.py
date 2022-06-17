@@ -1,11 +1,11 @@
-from typing import Union
+from __future__ import annotations
 
 from _bigtree.utils import Constants
 
 
 def construct_message(
-    branch_name: Union[str, None] = None,
-    request_description: Union[str, None] = None,
+    branch_name: str | None = None,
+    request_description: str | None = None,
 ) -> str:
     """Constructs an error message for `ProtectedBranchError`."""
 
@@ -28,8 +28,8 @@ class ProtectedBranchError(Exception):
 
     def __init__(
         self,
-        branch_name: Union[str, None] = None,
-        request_description: Union[str, None] = None,
+        branch_name: str | None = None,
+        request_description: str | None = None,
     ) -> None:
         self.message = construct_message(branch_name, request_description)
         super().__init__(self.message)

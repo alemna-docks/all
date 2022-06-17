@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import re
 from dataclasses import dataclass
 from pathlib import Path
 from types import FunctionType
-from typing import Union
 
 from _bigtree.config import SubtreeReader
 from _bigtree.utils import Constants
@@ -47,7 +48,7 @@ class Subtree:
     def name(self) -> str:
         return self._name
 
-    def local_directory(self, absolute=True, stringify=True) -> Union[str, Path]:
+    def local_directory(self, absolute=True, stringify=True) -> str | Path:
         """The directory the subtree 'lives' in. By default `local_directory` is
         returned as an absolute path in string form, but this can be modified by
         setting `absolute` or `stringify` as False.

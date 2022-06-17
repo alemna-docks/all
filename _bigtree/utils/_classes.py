@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Union
 
 from _bigtree.utils._functions import get_bigtree_root
 
@@ -38,7 +39,7 @@ class JSONReader:
     interpret it relative to `_bigtree.utils.Constants.BIGTREE_DIR`.
     """
 
-    def __init__(self, file: Union[str, Path]) -> None:
+    def __init__(self, file: str | Path) -> None:
         if isinstance(file, Path):
             if file.is_absolute:
                 file = str(file)
@@ -60,13 +61,13 @@ class JSONReader:
         """A dict holding the file's JSON data as a `dict`."""
         return self._data
 
-    def pretty_data(self, indent: Union[int, str, None] = 2) -> str:
+    def pretty_data(self, indent: int | str | None = 2) -> str:
         """The file's JSON data, turned into a string and pretty-ified
         with proper indentation.
         """
         return json.dumps(self.data, indent=indent)
 
-    def get(self, key: str) -> Any:
+    def get(self, key: str) -> str | int | float | bool | list | tuple | dict | None:
         """Returns whatever value is associated with the given `key`
         in this Reader's `.data`. If no such key exists, Python will
         raise a `KeyError`.
@@ -76,7 +77,7 @@ class JSONReader:
         """
         return self.data[key]
 
-    def get_optional(self, key: str) -> Any:
+    def get_optional(self, key: str):
         """A method to access a JSON field that may or may not exist.
         If it doesn't exist, this method returns `None` instead of
         raising `KeyError`.

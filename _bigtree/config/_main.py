@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from types import MappingProxyType
-from typing import Union
 
 from _bigtree.utils import Constants, JSONReader
 
@@ -29,7 +30,7 @@ class SubtreeReader(ConfigJSONReader):
     in the config file named by `_bigtree.utils.Constants.CONFIGFILE_PATH`.
     """
 
-    def __init__(self, subtree_name: Union[str, None] = None) -> None:
+    def __init__(self, subtree_name: str | None = None) -> None:
         super().__init__()
         self._data = Config.subtrees
         if subtree_name is not None:
